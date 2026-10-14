@@ -6,6 +6,7 @@ A small, responsive reading-list web app. Keep track of books you want to read, 
 
 - Add books with a required title and author, and choose a status: **To read**, **Reading**, or **Finished**.
 - Browse your **Wishlist**, **Books reading**, and **Books read** shelves; select a shelf to filter your list or show all books again.
+- Enjoy gentle shelf, book, and button transitions, with reduced motion for accessibility preferences.
 - See your newest additions first.
 - Search by book title or author.
 - Change a book's status or remove it from your list.
