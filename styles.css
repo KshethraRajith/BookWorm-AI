@@ -691,6 +691,39 @@ a {
   overflow: visible;
 }
 
+.logo-b-path {
+  transition: stroke 0.3s, filter 0.3s;
+}
+
+.brand:hover .logo-b-path {
+  filter: drop-shadow(0 0 6px rgba(246, 173, 85, 0.6));
+}
+
+.worm-head,
+.logo-worm-body {
+  transform-origin: 20px 20px;
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.brand:hover .worm-head {
+  animation: worm-head-bob 1.4s ease-in-out infinite alternate;
+}
+
+.brand:hover .logo-worm-body {
+  animation: worm-body-wiggle 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes worm-head-bob {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-1.5px) rotate(4deg); }
+}
+
+@keyframes worm-body-wiggle {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.02) rotate(-2deg); }
+  100% { transform: scale(0.98) rotate(2deg); }
+}
+
 .logo-sparkle {
   transform-origin: center;
   transition: transform 0.3s;
@@ -1169,25 +1202,75 @@ h1 span {
   margin-bottom: 1px;
 }
 
-.spread-title {
+/* The Word BIBLIOPHILE fades in when book opens */
+.bibliophile-fade-wrapper {
+  opacity: 0;
+  transform: translateY(6px) scale(0.92);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  margin: 2px 0 3px;
+  text-align: center;
+}
+
+/* Fades in smoothly when cursor touches the book (hover or open state) */
+.hero-art:hover .bibliophile-fade-wrapper,
+.book-illustration:hover .bibliophile-fade-wrapper,
+.book-illustration.is-open .bibliophile-fade-wrapper {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.8s 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bibliophile-word {
+  display: block;
   font-family: var(--font-serif);
-  font-size: 8px;
+  font-size: 7.5px;
   font-weight: 700;
-  color: var(--accent-green);
-  letter-spacing: 0.05em;
-  margin-bottom: 4px;
+  letter-spacing: 0.16em;
+  color: var(--accent-amber);
+  text-shadow: 0 0 8px rgba(246, 173, 85, 0.5);
+  animation: bibliophile-glow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes bibliophile-glow {
+  0% {
+    color: var(--accent-amber);
+    text-shadow: 0 0 6px rgba(246, 173, 85, 0.4);
+  }
+  100% {
+    color: #e28738;
+    text-shadow: 0 0 12px rgba(246, 173, 85, 0.8), 0 0 20px rgba(72, 187, 120, 0.35);
+  }
+}
+
+.bibliophile-sub {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 4.5px;
+  font-style: italic;
+  color: #728a7a;
+  letter-spacing: 0.04em;
+  margin-top: 1px;
+}
+
+.bibliophile-def {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 5px;
+  font-weight: 600;
+  color: #2d4a36;
+  letter-spacing: 0.02em;
+  margin-top: 1px;
 }
 
 .spread-line {
   display: block;
-  height: 3px;
+  height: 2.5px;
   border-radius: 2px;
-  background: rgba(45, 69, 54, 0.28);
+  background: rgba(45, 69, 54, 0.24);
 }
 
-.spread-line.l1 { width: 92%; }
-.spread-line.l2 { width: 78%; }
-.spread-line.l3 { width: 62%; }
+.spread-line.l1 { width: 90%; }
+.spread-line.l2 { width: 75%; }
 
 .spread-folio {
   margin-top: auto;
