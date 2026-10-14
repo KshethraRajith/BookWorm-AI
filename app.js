@@ -3,7 +3,7 @@
 
   const STORAGE_KEY = "bookworm.books.v1";
   const statuses = ["To read", "Reading", "Finished"];
-  const coverColors = ["#71806a", "#b27857", "#6b7e88", "#a48b62", "#80728b", "#b36854"];
+  const coverColors = ["#78917b", "#a68b70", "#7f9690", "#9a9a75", "#8c8095", "#aa7d71"];
   const form = document.querySelector("#book-form");
   const titleInput = document.querySelector("#title");
   const authorInput = document.querySelector("#author");
@@ -12,6 +12,10 @@
   const bookList = document.querySelector("#book-list");
   const statusMessage = document.querySelector("#status-message");
   const resultCount = document.querySelector("#result-count");
+  const showAllButton = document.querySelector("#show-all");
+  const listHeading = document.querySelector("#list-heading");
+  const shelfOptions = [...document.querySelectorAll(".shelf-option")];
+  let activeFilter = "";
   let books = loadBooks();
 
   function loadBooks() {
@@ -47,9 +51,9 @@
   }
 
   function updateCounts() {
-    document.querySelector("#count-total").textContent = String(books.length);
     document.querySelector("#count-reading").textContent = String(books.filter((book) => book.status === "Reading").length);
     document.querySelector("#count-finished").textContent = String(books.filter((book) => book.status === "Finished").length);
+    document.querySelector("#count-wishlist").textContent = String(books.filter((book) => book.status === "To read").length);
   }
 
   function createEmptyState(isSearching) {
@@ -62,12 +66,20 @@
     icon.textContent = isSearching ? "⌕" : "✦";
 
     const heading = document.createElement("h3");
-    heading.textContent = isSearching ? "No books found" : "Your shelf is waiting";
+    heading.textContent = isSearching || activeFilter ? "No books here yet" : "Your shelf is waiting";
 
     const description = document.createElement("p");
-    description.textContent = isSearching
-      ? "Try another title or author, and your book might turn up."
-      : "Add a book you’ve been meaning to read and it’ll show up here.";
+    if (isSearching) {
+      description.textContent = "Try another title or author, and your book might turn up.";
+    } else if (activeFilter === "Finished") {
+      description.textContent = "Finish a book and it’ll find its way onto this shelf.";
+    } else if (activeFilter === "Reading") {
+      description.textContent = "Start reading a book to see it here.";
+    } else if (activeFilter === "To read") {
+      description.textContent = "Add a book you’re excited to read and it’ll show up here.";
+    } else {
+      description.textContent = "Add a book you’ve been meaning to read and it’ll show up here.";
+    }
 
     empty.append(icon, heading, description);
     return empty;
@@ -113,7 +125,7 @@
       book.status = status.value;
       status.dataset.status = book.status;
       saveBooks();
-      updateCounts();
+      render();
       statusMessage.textContent = `${book.title} marked ${book.status}.`;
     });
 
@@ -148,6 +160,7 @@
     const visibleBooks = books
       .slice()
       .sort((first, second) => second.createdAt - first.createdAt)
+      .filter((book) => !activeFilter || book.status === activeFilter)
       .filter((book) =>
         book.title.toLocaleLowerCase().includes(query) ||
         book.author.toLocaleLowerCase().includes(query)
@@ -161,6 +174,18 @@
     }
 
     resultCount.textContent = `${visibleBooks.length} ${visibleBooks.length === 1 ? "book" : "books"}`;
+    listHeading.textContent = activeFilter === "Finished"
+      ? "Books read."
+      : activeFilter === "Reading"
+        ? "Books reading."
+        : activeFilter === "To read"
+          ? "Wishlist."
+          : "Your bookshelf.";
+    shelfOptions.forEach((option) => {
+      const isActive = option.dataset.filter === activeFilter;
+      option.setAttribute("aria-pressed", String(isActive));
+    });
+    showAllButton.hidden = !activeFilter;
     updateCounts();
   }
 
@@ -197,6 +222,7 @@
     books.unshift(book);
     saveBooks();
     searchInput.value = "";
+    activeFilter = "";
     form.reset();
     render();
     statusMessage.textContent = `${title} by ${author} added to your list.`;
@@ -204,6 +230,19 @@
   });
 
   searchInput.addEventListener("input", render);
+
+  shelfOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      activeFilter = activeFilter === option.dataset.filter ? "" : option.dataset.filter;
+      render();
+    });
+  });
+
+  showAllButton.addEventListener("click", () => {
+    activeFilter = "";
+    searchInput.value = "";
+    render();
+  });
 
   document.addEventListener("keydown", (event) => {
     if (

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f7f5ef">
+    <meta name="theme-color" content="#f5f7f0">
     <title>BookWorm — your reading list</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,9 +23,9 @@
     <main class="page-shell">
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
-          <p class="eyebrow">YOUR PERSONAL LIBRARY</p>
-          <h1 id="page-title">Stories worth<br><span>coming back to.</span></h1>
-          <p class="hero-description">Keep track of the books you love, the ones you’re reading, and everything waiting on your nightstand.</p>
+          <p class="eyebrow">YOUR READING LIFE, IN ONE PLACE</p>
+          <h1 id="page-title">A softer place<br><span>to keep your stories.</span></h1>
+          <p class="hero-description">Make room for the books you’ve finished, the ones you’re reading, and the stories on your wishlist.</p>
         </div>
         <div class="hero-art" aria-hidden="true">
           <span class="orbit orbit-one"></span>
@@ -41,22 +41,28 @@
         </div>
       </section>
 
-      <section class="stats" aria-label="Reading list counts">
-        <div class="stat-card">
-          <span class="stat-icon stat-icon-total" aria-hidden="true">▤</span>
-          <span class="stat-number" id="count-total">0</span>
-          <span class="stat-label">IN YOUR LIST</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-icon stat-icon-reading" aria-hidden="true">◷</span>
-          <span class="stat-number" id="count-reading">0</span>
-          <span class="stat-label">READING NOW</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-icon stat-icon-finished" aria-hidden="true">✳</span>
-          <span class="stat-number" id="count-finished">0</span>
-          <span class="stat-label">FINISHED</span>
-        </div>
+      <section class="shelf-section" aria-label="Browse your books">
+        <p class="eyebrow shelf-eyebrow">YOUR SHELVES</p>
+        <nav class="shelf-options" aria-label="Filter books by shelf">
+          <button class="shelf-option shelf-read" type="button" data-filter="Finished" aria-pressed="false">
+            <span class="shelf-icon" aria-hidden="true">✓</span>
+            <span class="shelf-copy"><span class="shelf-name">Books read</span><span class="shelf-caption">Stories you’ve finished</span></span>
+            <span class="shelf-count" id="count-finished">0</span>
+            <span class="shelf-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="shelf-option shelf-reading" type="button" data-filter="Reading" aria-pressed="false">
+            <span class="shelf-icon" aria-hidden="true">◷</span>
+            <span class="shelf-copy"><span class="shelf-name">Books reading</span><span class="shelf-caption">Your current chapter</span></span>
+            <span class="shelf-count" id="count-reading">0</span>
+            <span class="shelf-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="shelf-option shelf-wishlist" type="button" data-filter="To read" aria-pressed="false">
+            <span class="shelf-icon" aria-hidden="true">♡</span>
+            <span class="shelf-copy"><span class="shelf-name">Wishlist</span><span class="shelf-caption">Books to look forward to</span></span>
+            <span class="shelf-count" id="count-wishlist">0</span>
+            <span class="shelf-arrow" aria-hidden="true">↗</span>
+          </button>
+        </nav>
       </section>
 
       <div class="content-grid">
@@ -75,6 +81,7 @@
           </div>
           <div class="list-meta">
             <span id="result-count">0 books</span>
+            <button class="all-books-button" id="show-all" type="button" hidden>Show all books</button>
             <span class="sort-note"><span aria-hidden="true">↓</span> Newest first</span>
           </div>
           <div id="book-list" class="book-list" aria-live="polite"></div>
