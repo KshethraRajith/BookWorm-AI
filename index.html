@@ -1,131 +1,433 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f5f7f0">
-    <title>BookWorm — your reading list</title>
+    <meta name="theme-color" content="#f6f8f5">
+    <title>BookWorm — Your Modern Reading Sanctuary</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
   </head>
   <body>
+    <!-- Ambient Transparent Turning Pages Background Animation -->
+    <div class="ambient-book-bg" aria-hidden="true">
+      <div class="ambient-glow ambient-glow-1"></div>
+      <div class="ambient-glow ambient-glow-2"></div>
+      <div class="ambient-glow ambient-glow-3"></div>
+      
+      <!-- Central Realistic 3D Open Book with Turning Pages -->
+      <div class="turning-book-stage">
+        <div class="turning-book">
+          <!-- Book base covers -->
+          <div class="book-cover-base left-cover"></div>
+          <div class="book-spine-hinge"></div>
+          <div class="book-cover-base right-cover"></div>
+
+          <!-- Static pages under turning leaves -->
+          <div class="static-page left-static">
+            <span class="page-line line-1"></span>
+            <span class="page-line line-2"></span>
+            <span class="page-line line-3"></span>
+            <span class="page-line line-4"></span>
+            <span class="page-line line-5"></span>
+            <span class="page-folio">§ 124</span>
+          </div>
+          <div class="static-page right-static">
+            <span class="page-line line-1"></span>
+            <span class="page-line line-2"></span>
+            <span class="page-line line-3"></span>
+            <span class="page-line line-4"></span>
+            <span class="page-line line-5"></span>
+            <span class="page-folio">§ 125</span>
+          </div>
+
+          <!-- Flipping dynamic pages (continuous staggered cycle) -->
+          <div class="flipping-page flip-1">
+            <div class="page-face page-front">
+              <span class="page-heading-line"></span>
+              <span class="page-line line-1"></span>
+              <span class="page-line line-2"></span>
+              <span class="page-line line-3"></span>
+              <span class="page-line line-4"></span>
+            </div>
+            <div class="page-face page-back">
+              <span class="page-line line-1"></span>
+              <span class="page-line line-2"></span>
+              <span class="page-line line-3"></span>
+              <span class="page-line line-4"></span>
+            </div>
+          </div>
+
+          <div class="flipping-page flip-2">
+            <div class="page-face page-front">
+              <span class="page-heading-line"></span>
+              <span class="page-line line-1"></span>
+              <span class="page-line line-2"></span>
+              <span class="page-line line-3"></span>
+              <span class="page-line line-4"></span>
+            </div>
+            <div class="page-face page-back">
+              <span class="page-line line-1"></span>
+              <span class="page-line line-2"></span>
+              <span class="page-line line-3"></span>
+              <span class="page-line line-4"></span>
+            </div>
+          </div>
+
+          <div class="flipping-page flip-3">
+            <div class="page-face page-front">
+              <span class="page-heading-line"></span>
+              <span class="page-line line-1"></span>
+              <span class="page-line line-2"></span>
+              <span class="page-line line-3"></span>
+              <span class="page-line line-4"></span>
+            </div>
+            <div class="page-face page-back">
+              <span class="page-line line-1"></span>
+              <span class="page-line line-2"></span>
+              <span class="page-line line-3"></span>
+              <span class="page-line line-4"></span>
+            </div>
+          </div>
+
+          <div class="flipping-page flip-4">
+            <div class="page-face page-front">
+              <span class="page-heading-line"></span>
+              <span class="page-line line-1"></span>
+              <span class="page-line line-2"></span>
+              <span class="page-line line-3"></span>
+              <span class="page-line line-4"></span>
+            </div>
+            <div class="page-face page-back">
+              <span class="page-line line-1"></span>
+              <span class="page-line line-2"></span>
+              <span class="page-line line-3"></span>
+              <span class="page-line line-4"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating drifting book leaves across the screen -->
+      <div class="floating-page fp-1"><span class="fp-inner"></span></div>
+      <div class="floating-page fp-2"><span class="fp-inner"></span></div>
+      <div class="floating-page fp-3"><span class="fp-inner"></span></div>
+      <div class="floating-page fp-4"><span class="fp-inner"></span></div>
+      <div class="floating-page fp-5"><span class="fp-inner"></span></div>
+    </div>
+
+    <!-- Header / Navigation Bar -->
     <header class="topbar">
-      <a class="brand" href="#" aria-label="BookWorm home">
-        <span class="brand-mark" aria-hidden="true">b.</span>
-        <span>bookworm</span>
-      </a>
-      <span class="topbar-note"><span class="sparkle" aria-hidden="true">✳</span> A little home for your next great read</span>
+      <div class="topbar-left">
+        <a class="brand" href="#" aria-label="BookWorm home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="brand-svg-book" width="18" height="18" fill="currentColor">
+              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5zm2.5-.5a.5.5 0 0 0 0 1H18V4H6.5a.5.5 0 0 0-.5.5v14.5z"/>
+            </svg>
+          </span>
+          <span class="brand-text">bookworm<span class="brand-dot">.</span>ai</span>
+        </a>
+        <div class="reading-streak-badge" id="header-progress-badge" title="Reading completion rate">
+          <span class="streak-icon" aria-hidden="true">✦</span>
+          <span class="streak-text" id="header-progress-text">Reading Sanctuary</span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <!-- Quick stats summary pill -->
+        <div class="topbar-summary" id="topbar-summary">
+          <span class="summary-count" id="summary-total-books">0</span>
+          <span class="summary-label">books saved</span>
+        </div>
+
+        <!-- Light / Dark Mode Toggle Switch -->
+        <div class="theme-toggle-wrapper">
+          <button
+            class="theme-toggle-switch"
+            id="theme-toggle"
+            type="button"
+            role="switch"
+            aria-checked="false"
+            aria-label="Toggle dark mode"
+            title="Toggle theme (Alt+T)"
+          >
+            <span class="toggle-icons" aria-hidden="true">
+              <span class="toggle-icon sun-icon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="4.5"></circle>
+                  <line x1="12" y1="1.5" x2="12" y2="3.5"></line>
+                  <line x1="12" y1="20.5" x2="12" y2="22.5"></line>
+                  <line x1="4.5" y1="4.5" x2="6" y2="6"></line>
+                  <line x1="18" y1="18" x2="19.5" y2="19.5"></line>
+                  <line x1="1.5" y1="12" x2="3.5" y2="12"></line>
+                  <line x1="20.5" y1="12" x2="22.5" y2="12"></line>
+                  <line x1="4.5" y1="19.5" x2="6" y2="18"></line>
+                  <line x1="18" y1="6" x2="19.5" y2="4.5"></line>
+                </svg>
+              </span>
+              <span class="toggle-icon moon-icon">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+              </span>
+            </span>
+            <span class="toggle-thumb" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
     </header>
 
     <main class="page-shell">
+      <!-- Hero Section -->
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
-          <p class="eyebrow">YOUR READING LIFE, IN ONE PLACE</p>
+          <div class="hero-badge">
+            <span class="badge-sparkle">✳</span>
+            <span>YOUR PERSONAL LITERARY COMPANION</span>
+          </div>
           <h1 id="page-title">A softer place<br><span>to keep your stories.</span></h1>
-          <p class="hero-description">Make room for the books you’ve finished, the ones you’re reading, and the stories on your wishlist.</p>
+          <p class="hero-description">Organize your reading journey with grace. Track what you're devouring, cherish finished milestones, and cultivate an inspiring wishlist.</p>
+          
+          <div class="hero-quick-actions">
+            <button class="hero-action-btn" id="hero-sample-btn" type="button">
+              <span aria-hidden="true">✨</span> Load Sample Books
+            </button>
+            <a class="hero-action-link" href="#book-form">
+              <span aria-hidden="true">＋</span> Add a new book
+            </a>
+          </div>
         </div>
+
         <div class="hero-art" aria-hidden="true">
-          <span class="orbit orbit-one"></span>
-          <span class="orbit orbit-two"></span>
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="hero-art-glow"></div>
+          
           <div class="book-illustration">
+            <div class="book-spine-line"></div>
+            <div class="book-bookmark"></div>
             <span class="book-page"></span>
-            <span class="book-label">ONE<br>MORE<br>CHAPTER</span>
+            <div class="book-cover-content">
+              <span class="book-label">ONE<br>MORE<br>CHAPTER</span>
+              <span class="book-author-mark">✦ vol. I</span>
+            </div>
             <span class="book-sun"></span>
           </div>
+
           <span class="art-star star-one">✳</span>
           <span class="art-star star-two">✦</span>
-          <span class="art-dot"></span>
+          <span class="art-star star-three">✧</span>
+          <span class="art-dot dot-one"></span>
+          <span class="art-dot dot-two"></span>
         </div>
       </section>
 
+      <!-- Shelves Section -->
       <section class="shelf-section" aria-label="Browse your books">
-        <p class="eyebrow shelf-eyebrow">YOUR SHELVES</p>
+        <div class="shelf-header">
+          <p class="eyebrow shelf-eyebrow">CURATE & EXPLORE</p>
+          <div class="shelf-stats-meter" id="shelf-progress-container">
+            <div class="shelf-progress-bar">
+              <div class="shelf-progress-fill" id="shelf-progress-fill" style="width: 0%;"></div>
+            </div>
+            <span class="shelf-progress-label" id="shelf-progress-label">0% completed</span>
+          </div>
+        </div>
+
         <nav class="shelf-options" aria-label="Filter books by shelf">
+          <button class="shelf-option shelf-all active" type="button" data-filter="" aria-pressed="true">
+            <span class="shelf-icon" aria-hidden="true">🕮</span>
+            <span class="shelf-copy">
+              <span class="shelf-name">All Books</span>
+              <span class="shelf-caption">Complete collection</span>
+            </span>
+            <span class="shelf-count" id="count-all">0</span>
+            <span class="shelf-arrow" aria-hidden="true">→</span>
+          </button>
+
           <button class="shelf-option shelf-read" type="button" data-filter="Finished" aria-pressed="false">
             <span class="shelf-icon" aria-hidden="true">✓</span>
-            <span class="shelf-copy"><span class="shelf-name">Books read</span><span class="shelf-caption">Stories you’ve finished</span></span>
+            <span class="shelf-copy">
+              <span class="shelf-name">Books read</span>
+              <span class="shelf-caption">Stories completed</span>
+            </span>
             <span class="shelf-count" id="count-finished">0</span>
             <span class="shelf-arrow" aria-hidden="true">↗</span>
           </button>
+
           <button class="shelf-option shelf-reading" type="button" data-filter="Reading" aria-pressed="false">
             <span class="shelf-icon" aria-hidden="true">◷</span>
-            <span class="shelf-copy"><span class="shelf-name">Books reading</span><span class="shelf-caption">Your current chapter</span></span>
+            <span class="shelf-copy">
+              <span class="shelf-name">Books reading</span>
+              <span class="shelf-caption">Current chapters</span>
+            </span>
             <span class="shelf-count" id="count-reading">0</span>
             <span class="shelf-arrow" aria-hidden="true">↗</span>
           </button>
+
           <button class="shelf-option shelf-wishlist" type="button" data-filter="To read" aria-pressed="false">
             <span class="shelf-icon" aria-hidden="true">♡</span>
-            <span class="shelf-copy"><span class="shelf-name">Wishlist</span><span class="shelf-caption">Books to look forward to</span></span>
+            <span class="shelf-copy">
+              <span class="shelf-name">Wishlist</span>
+              <span class="shelf-caption">Next to explore</span>
+            </span>
             <span class="shelf-count" id="count-wishlist">0</span>
             <span class="shelf-arrow" aria-hidden="true">↗</span>
           </button>
         </nav>
       </section>
 
+      <!-- Main Content Grid -->
       <div class="content-grid">
+        <!-- Bookshelf List Section -->
         <section class="list-section" aria-labelledby="list-heading">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">THE GOOD STUFF</p>
+              <p class="eyebrow">YOUR COLLECTION</p>
               <h2 id="list-heading">Your bookshelf<span class="heading-period">.</span></h2>
             </div>
-            <label class="search-box">
-              <span class="search-icon" aria-hidden="true"></span>
-              <span class="sr-only">Search books by title or author</span>
-              <input id="search" type="search" placeholder="Find a book..." autocomplete="off">
-              <kbd>/</kbd>
-            </label>
+
+            <!-- Modern Search Box with Clear Button -->
+            <div class="search-box-wrapper">
+              <label class="search-box" for="search">
+                <span class="search-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </span>
+                <span class="sr-only">Search books by title, author, or genre</span>
+                <input id="search" type="search" placeholder="Search by title, author..." autocomplete="off">
+                <button type="button" id="search-clear-btn" class="search-clear-btn" aria-label="Clear search query" hidden>×</button>
+                <kbd class="search-shortcut" title="Press / to focus search">/</kbd>
+              </label>
+            </div>
           </div>
+
+          <!-- List Meta Controls (Sort & Counts) -->
           <div class="list-meta">
-            <span id="result-count">0 books</span>
-            <button class="all-books-button" id="show-all" type="button" hidden>Show all books</button>
-            <span class="sort-note"><span aria-hidden="true">↓</span> Newest first</span>
+            <div class="meta-left">
+              <span id="result-count" class="result-count-badge">0 books</span>
+              <button class="all-books-button" id="show-all" type="button" hidden>
+                Show all books <span aria-hidden="true">×</span>
+              </button>
+            </div>
+
+            <div class="meta-right">
+              <div class="sort-selector-wrapper">
+                <label for="sort-select" class="sort-label">Sort:</label>
+                <select id="sort-select" class="sort-select" aria-label="Sort books">
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
+                  <option value="title">Title (A–Z)</option>
+                  <option value="author">Author (A–Z)</option>
+                  <option value="rating">Highest rated</option>
+                </select>
+              </div>
+            </div>
           </div>
+
+          <!-- Book Cards Container -->
           <div id="book-list" class="book-list" aria-live="polite"></div>
         </section>
 
+        <!-- Add a Book Aside Form -->
         <aside class="add-card" aria-labelledby="add-heading">
           <div class="add-card-heading">
             <span class="add-icon" aria-hidden="true">＋</span>
             <div>
-              <p class="eyebrow">GROW YOUR SHELF</p>
+              <p class="eyebrow">EXPAND YOUR HORIZONS</p>
               <h2 id="add-heading">Add a book</h2>
             </div>
           </div>
-          <p class="form-intro">A good book always finds its way here.</p>
+          <p class="form-intro">Every great story begins with a single title.</p>
+          
           <form id="book-form" novalidate>
             <div class="field">
               <label for="title">Book title <span class="required">*</span></label>
-              <input id="title" name="title" type="text" placeholder="e.g. Aadujeevitham" autocomplete="off" required aria-describedby="title-error">
+              <div class="input-wrapper">
+                <input id="title" name="title" type="text" placeholder="e.g. Project Hail Mary" autocomplete="off" required aria-describedby="title-error">
+              </div>
               <p class="field-error" id="title-error"></p>
             </div>
+
             <div class="field">
               <label for="author">Author <span class="required">*</span></label>
-              <input id="author" name="author" type="text" placeholder="e.g. Benyamin" autocomplete="off" required aria-describedby="author-error">
+              <div class="input-wrapper">
+                <input id="author" name="author" type="text" placeholder="e.g. Andy Weir" autocomplete="off" required aria-describedby="author-error">
+              </div>
               <p class="field-error" id="author-error"></p>
             </div>
-            <div class="field">
-              <label for="status">Reading status</label>
-              <select id="status" name="status">
-                <option value="To read">To read</option>
-                <option value="Reading">Reading</option>
-                <option value="Finished">Finished</option>
-              </select>
+
+            <div class="field-row">
+              <div class="field field-half">
+                <label for="status">Reading status</label>
+                <select id="status" name="status">
+                  <option value="To read">To read</option>
+                  <option value="Reading">Reading</option>
+                  <option value="Finished">Finished</option>
+                </select>
+              </div>
+
+              <div class="field field-half">
+                <label for="genre">Genre / Shelf</label>
+                <select id="genre" name="genre">
+                  <option value="Fiction">Fiction</option>
+                  <option value="Non-Fiction">Non-Fiction</option>
+                  <option value="Sci-Fi & Fantasy">Sci-Fi & Fantasy</option>
+                  <option value="Classic">Classic</option>
+                  <option value="Philosophy">Philosophy</option>
+                  <option value="Biography">Biography</option>
+                  <option value="Mystery">Mystery</option>
+                  <option value="Poetry">Poetry</option>
+                  <option value="General">General</option>
+                </select>
+              </div>
             </div>
-            <button class="add-button" type="submit"><span aria-hidden="true">＋</span> Add to my list</button>
+
+            <div class="field rating-field">
+              <label>Initial Rating (optional)</label>
+              <div class="star-rating-input" id="star-rating-input" role="radiogroup" aria-label="Book rating">
+                <button type="button" class="star-btn" data-value="1" aria-label="1 star">★</button>
+                <button type="button" class="star-btn" data-value="2" aria-label="2 stars">★</button>
+                <button type="button" class="star-btn" data-value="3" aria-label="3 stars">★</button>
+                <button type="button" class="star-btn" data-value="4" aria-label="4 stars">★</button>
+                <button type="button" class="star-btn" data-value="5" aria-label="5 stars">★</button>
+                <input type="hidden" id="rating-val" name="rating" value="0">
+              </div>
+            </div>
+
+            <button class="add-button" type="submit">
+              <span class="btn-icon" aria-hidden="true">＋</span>
+              <span>Add to my collection</span>
+            </button>
           </form>
-          <p class="privacy-note"><span aria-hidden="true">▣</span> Your list is saved only on this device.</p>
+
+          <div class="card-footer-notes">
+            <p class="privacy-note"><span aria-hidden="true">🔒</span> Saved locally on your device.</p>
+          </div>
         </aside>
       </div>
+
+      <!-- Invisible status message for Screen Readers -->
       <p class="sr-only" id="status-message" role="status" aria-live="polite"></p>
     </main>
 
+    <!-- Toast Notification System -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Footer -->
     <footer class="footer">
-      <span>Made for the love of a good story <span aria-hidden="true">♡</span></span>
-      <span>YOUR SHELF, YOUR STORY.</span>
+      <div class="footer-left">
+        <span>Curated for book lovers & storytellers</span>
+        <span class="footer-heart" aria-hidden="true">♥</span>
+      </div>
+      <div class="footer-right">
+        <span>BOOKWORM AI • YOUR SHELF, YOUR STORY</span>
+      </div>
     </footer>
   </body>
 </html>
