@@ -6,20 +6,12 @@ A modern, responsive reading sanctuary and bookshelf tracker designed with rich 
 
 - **Light & Dark Mode Toggle**:
   - Tactile sliding toggle switch in the top bar with Sun and Moon icons.
-  - Automatically matches your system preferences or remembers your custom choice via `localStorage`.
   - Accessible shortcut: Press <kbd>Alt</kbd> + <kbd>T</kbd> anywhere to switch themes instantly.
-  - Curated color systems: Warm Literary Paper in Light Mode, and Ethereal Midnight Sanctuary in Dark Mode.
 
 - **Ambient 3D Turning Pages Background Animation**:
   - A subtle, slightly transparent background animation of an open book with continuous, realistic 3D turning pages and drifting leaves behind the content.
   - Gentle depth with non-intrusive opacity to preserve readability while offering an immersive literary ambiance.
   - Respects accessibility settings (`prefers-reduced-motion`).
-
-- **Rich Card Animations & Micro-Interactions**:
-  - **Staggered Arrival**: Books glide into view smoothly with a spring curve and staggered timing.
-  - **3D Spine Tilt & Shimmer**: Hovering over a book card tilts its cover thumbnail with a glossy light reflection.
-  - **Celebratory Arrival**: Newly added books highlight with an amber/emerald pulse.
-  - **Smooth Exit & Undo**: Deleting a book slides it away with a sleek exit transition, with an instant **Undo** toast notification if removed by mistake.
 
 - **Dynamic Curated Shelves & Reading Progress**:
   - Filter easily between **All Books**, **Books read** (Finished), **Books reading** (In-progress), and **Wishlist** (To read).
