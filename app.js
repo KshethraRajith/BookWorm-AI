@@ -748,6 +748,20 @@
     }
   });
 
+  // Interactive Floating Green Book (Touch / Click & Keyboard toggle)
+  const heroFloatingBook = document.querySelector("#hero-floating-book");
+  if (heroFloatingBook) {
+    heroFloatingBook.addEventListener("click", () => {
+      heroFloatingBook.classList.toggle("is-open");
+    });
+    heroFloatingBook.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        heroFloatingBook.classList.toggle("is-open");
+      }
+    });
+  }
+
   /* --------------------------------------------------------------------------
      11. Initialize
      -------------------------------------------------------------------------- */
