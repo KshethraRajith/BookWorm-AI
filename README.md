@@ -43,6 +43,8 @@ A modern, responsive reading sanctuary and bookshelf tracker designed with rich 
 ## How to Open
 
 Open [`index.html`](./index.html) in any modern browser. No build steps, bundlers, accounts, or databases are required.
+Or
+Click on the link in the "About Section"!
 
 ## Data & Privacy
 
