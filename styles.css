@@ -1147,146 +1147,162 @@ h1 span {
   z-index: 4;
 }
 
-/* Two-Page Spread Revealed inside when Open */
-.book-spread {
+/* The First White Page Revealed Inside When Book Opens */
+.first-white-page {
   position: absolute;
   inset: 3px 3px 3px 6px;
-  border-radius: 2px 7px 7px 2px;
-  display: flex;
-  background: #fbfbf6;
-  overflow: hidden;
-  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.08);
-}
-
-.spread-page {
-  flex: 1;
-  padding: 14px 10px;
+  border-radius: 2px 8px 8px 2px;
+  background: linear-gradient(135deg, #fdfbf7 0%, #f6f3e7 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05), inset 3px 0 6px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  color: #1e2822;
-  font-family: var(--font-sans);
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 10px 10px;
+  overflow: hidden;
+  z-index: 5;
+  user-select: none;
 }
 
-.spread-left {
-  background: linear-gradient(to right, #e8e3d5, #faf9f4);
-  border-right: 1px solid rgba(0, 0, 0, 0.12);
+.page-header-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 
-.spread-right {
-  background: linear-gradient(to left, #e8e3d5, #faf9f4);
+.page-mark-icon {
+  font-size: 8px;
+  color: var(--accent-amber);
 }
 
-.spread-chapter {
+.page-mark-title {
   font-family: var(--font-display);
-  font-size: 7px;
+  font-size: 6.5px;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--accent-amber);
-  margin-bottom: 2px;
+  letter-spacing: 0.16em;
+  color: var(--accent-green);
+  text-transform: uppercase;
 }
 
-.spread-quote {
-  font-family: var(--font-serif);
-  font-size: 8.5px;
-  font-style: italic;
-  line-height: 1.25;
-  color: #2b4534;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.spread-icon {
-  font-size: 11px;
-  color: var(--accent-amber);
-  margin-bottom: 1px;
-}
-
-/* The Word BIBLIOPHILE fades in when book opens */
+/* The Word BIBLIOPHILE on the First White Page with smooth fade-in animation */
 .bibliophile-fade-wrapper {
   opacity: 0;
-  transform: translateY(6px) scale(0.92);
-  transition: opacity 0.22s ease, transform 0.22s ease;
-  margin: 2px 0 3px;
+  transform: translateY(8px) scale(0.92);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  width: 100%;
+  margin: auto 0;
 }
 
-/* Fades in smoothly when cursor touches the book (hover or open state) */
+/* Fades in smoothly when cursor touches the floating book */
 .hero-art:hover .bibliophile-fade-wrapper,
 .book-illustration:hover .bibliophile-fade-wrapper,
+.book-illustration:focus-visible .bibliophile-fade-wrapper,
 .book-illustration.is-open .bibliophile-fade-wrapper {
   opacity: 1;
   transform: translateY(0) scale(1);
-  transition: opacity 0.8s 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.85s 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .bibliophile-word {
   display: block;
   font-family: var(--font-serif);
-  font-size: 7.5px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: var(--accent-amber);
-  text-shadow: 0 0 8px rgba(246, 173, 85, 0.5);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #b7791f;
+  background: linear-gradient(135deg, #d69e2e 0%, #dd6b20 50%, #b7791f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 6px rgba(246, 173, 85, 0.5));
   animation: bibliophile-glow 2.5s ease-in-out infinite alternate;
 }
 
 @keyframes bibliophile-glow {
   0% {
-    color: var(--accent-amber);
-    text-shadow: 0 0 6px rgba(246, 173, 85, 0.4);
+    filter: drop-shadow(0 0 4px rgba(246, 173, 85, 0.4));
   }
   100% {
-    color: #e28738;
-    text-shadow: 0 0 12px rgba(246, 173, 85, 0.8), 0 0 20px rgba(72, 187, 120, 0.35);
+    filter: drop-shadow(0 0 10px rgba(246, 173, 85, 0.8)) drop-shadow(0 0 16px rgba(72, 187, 120, 0.3));
   }
 }
 
-.bibliophile-sub {
+.bibliophile-phonetic {
   display: block;
   font-family: var(--font-sans);
-  font-size: 4.5px;
+  font-size: 6px;
   font-style: italic;
-  color: #728a7a;
-  letter-spacing: 0.04em;
-  margin-top: 1px;
+  font-weight: 500;
+  color: #4a705b;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.bibliophile-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 76%;
+  margin: 5px 0 4px;
+}
+
+.bibliophile-divider .b-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, transparent, rgba(214, 158, 46, 0.5), transparent);
+}
+
+.bibliophile-divider .b-gem {
+  font-size: 5px;
+  color: var(--accent-amber);
 }
 
 .bibliophile-def {
   display: block;
   font-family: var(--font-serif);
-  font-size: 5px;
+  font-size: 6.5px;
   font-weight: 600;
-  color: #2d4a36;
+  font-style: italic;
+  color: #2d4534;
   letter-spacing: 0.02em;
-  margin-top: 1px;
+  line-height: 1.3;
+  max-width: 90px;
 }
 
-.spread-line {
-  display: block;
-  height: 2.5px;
-  border-radius: 2px;
-  background: rgba(45, 69, 54, 0.24);
+.page-footer-mark {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
 }
 
-.spread-line.l1 { width: 90%; }
-.spread-line.l2 { width: 75%; }
-
-.spread-folio {
-  margin-top: auto;
+.page-folio {
   font-family: var(--font-serif);
-  font-size: 7.5px;
+  font-size: 7px;
   color: #88998d;
 }
 
-/* Fanning Middle Pages */
+.page-flourish {
+  font-size: 7px;
+  color: var(--accent-amber);
+}
+
+/* Fanning Middle Flyleaf (turns to the left with the cover) */
 .book-leaf-leaf {
   position: absolute;
   top: 3px;
   left: 6px;
   width: calc(100% - 9px);
   height: calc(100% - 6px);
-  background: #f8f7ee;
+  background: linear-gradient(135deg, #f9f8f2, #eee9db);
   border-radius: 2px 7px 7px 2px;
   transform-origin: left center;
   transform-style: preserve-3d;
@@ -1300,23 +1316,13 @@ h1 span {
   transition-delay: 0.04s;
 }
 
-.leaf-mid {
-  transition-delay: 0.08s;
-}
-
-/* On hover/touch: Fanning pages swing open */
+/* On hover/touch: Flyleaf swings open to the left with the cover, revealing the first white page */
 .hero-art:hover .leaf-left,
 .book-illustration:hover .leaf-left,
+.book-illustration:focus-visible .leaf-left,
 .book-illustration.is-open .leaf-left {
-  transform: rotateY(-130deg);
-  transition: transform 0.75s 0.06s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-art:hover .leaf-mid,
-.book-illustration:hover .leaf-mid,
-.book-illustration.is-open .leaf-mid {
-  transform: rotateY(-40deg);
-  transition: transform 0.7s 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: rotateY(-145deg);
+  transition: transform 0.78s 0.06s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Front Cover (Opens smoothly on cursor touch, closes when cursor leaves) */
