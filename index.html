@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f5ef">
+    <title>BookWorm — your reading list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="BookWorm home">
+        <span class="brand-mark" aria-hidden="true">b.</span>
+        <span>bookworm</span>
+      </a>
+      <span class="topbar-note"><span class="sparkle" aria-hidden="true">✳</span> A little home for your next great read</span>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">YOUR PERSONAL LIBRARY</p>
+          <h1 id="page-title">Stories worth<br><span>coming back to.</span></h1>
+          <p class="hero-description">Keep track of the books you love, the ones you’re reading, and everything waiting on your nightstand.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <span class="orbit orbit-one"></span>
+          <span class="orbit orbit-two"></span>
+          <div class="book-illustration">
+            <span class="book-page"></span>
+            <span class="book-label">ONE<br>MORE<br>CHAPTER</span>
+            <span class="book-sun"></span>
+          </div>
+          <span class="art-star star-one">✳</span>
+          <span class="art-star star-two">✦</span>
+          <span class="art-dot"></span>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Reading list counts">
+        <div class="stat-card">
+          <span class="stat-icon stat-icon-total" aria-hidden="true">▤</span>
+          <span class="stat-number" id="count-total">0</span>
+          <span class="stat-label">IN YOUR LIST</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon stat-icon-reading" aria-hidden="true">◷</span>
+          <span class="stat-number" id="count-reading">0</span>
+          <span class="stat-label">READING NOW</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon stat-icon-finished" aria-hidden="true">✳</span>
+          <span class="stat-number" id="count-finished">0</span>
+          <span class="stat-label">FINISHED</span>
+        </div>
+      </section>
+
+      <div class="content-grid">
+        <section class="list-section" aria-labelledby="list-heading">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">THE GOOD STUFF</p>
+              <h2 id="list-heading">Your bookshelf<span class="heading-period">.</span></h2>
+            </div>
+            <label class="search-box">
+              <span class="search-icon" aria-hidden="true"></span>
+              <span class="sr-only">Search books by title or author</span>
+              <input id="search" type="search" placeholder="Find a book..." autocomplete="off">
+              <kbd>/</kbd>
+            </label>
+          </div>
+          <div class="list-meta">
+            <span id="result-count">0 books</span>
+            <span class="sort-note"><span aria-hidden="true">↓</span> Newest first</span>
+          </div>
+          <div id="book-list" class="book-list" aria-live="polite"></div>
+        </section>
+
+        <aside class="add-card" aria-labelledby="add-heading">
+          <div class="add-card-heading">
+            <span class="add-icon" aria-hidden="true">＋</span>
+            <div>
+              <p class="eyebrow">GROW YOUR SHELF</p>
+              <h2 id="add-heading">Add a book</h2>
+            </div>
+          </div>
+          <p class="form-intro">A good book always finds its way here.</p>
+          <form id="book-form" novalidate>
+            <div class="field">
+              <label for="title">Book title <span class="required">*</span></label>
+              <input id="title" name="title" type="text" placeholder="e.g. Aadujeevitham" autocomplete="off" required aria-describedby="title-error">
+              <p class="field-error" id="title-error"></p>
+            </div>
+            <div class="field">
+              <label for="author">Author <span class="required">*</span></label>
+              <input id="author" name="author" type="text" placeholder="e.g. Benyamin" autocomplete="off" required aria-describedby="author-error">
+              <p class="field-error" id="author-error"></p>
+            </div>
+            <div class="field">
+              <label for="status">Reading status</label>
+              <select id="status" name="status">
+                <option value="To read">To read</option>
+                <option value="Reading">Reading</option>
+                <option value="Finished">Finished</option>
+              </select>
+            </div>
+            <button class="add-button" type="submit"><span aria-hidden="true">＋</span> Add to my list</button>
+          </form>
+          <p class="privacy-note"><span aria-hidden="true">▣</span> Your list is saved only on this device.</p>
+        </aside>
+      </div>
+      <p class="sr-only" id="status-message" role="status" aria-live="polite"></p>
+    </main>
+
+    <footer class="footer">
+      <span>Made for the love of a good story <span aria-hidden="true">♡</span></span>
+      <span>YOUR SHELF, YOUR STORY.</span>
+    </footer>
+  </body>
+</html>
